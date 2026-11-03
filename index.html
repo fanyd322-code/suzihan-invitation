@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>留一晚，去看场电影</title>
+<style>
+:root{color-scheme:light;--wine:#4b171a;--paper:#f2ead8;--ink:#203b2d;--muted:#718071;--gold:#ad8d4c;--line:#b8b9a5}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--wine);color:var(--ink);font-family:"Songti SC","Noto Serif CJK SC",serif}
+button{font:inherit;cursor:pointer}.app{min-height:100vh;display:grid;place-items:center;padding:28px}.screen{display:none;width:min(100%,680px);background:var(--paper);padding:clamp(28px,6vw,56px);position:relative}.screen.active{display:block}.screen:before,.ticket:before,.ticket:after{content:"";position:absolute;left:-10px;right:-10px;height:18px;background:radial-gradient(circle at 9px 9px,var(--wine) 8px,transparent 8.5px) repeat-x;background-size:28px 18px}.screen:before{top:-9px}.kicker{font:11px Arial,sans-serif;letter-spacing:3px;color:var(--gold);text-transform:uppercase}.cover{text-align:center;min-height:570px;display:flex;flex-direction:column;justify-content:center;align-items:center}.cover:after{content:"";position:absolute;bottom:-9px;left:-10px;right:-10px;height:18px;background:radial-gradient(circle at 9px 9px,var(--wine) 8px,transparent 8.5px) repeat-x;background-size:28px 18px}.mark{border:1px solid var(--gold);width:62px;height:62px;border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:14px;line-height:1.25;margin:28px auto}.cover h1{font-size:clamp(38px,7vw,58px);line-height:1.35;font-weight:400;letter-spacing:2px;margin:4px 0 12px}.cover p{color:var(--muted);font-size:15px;margin:0 0 34px}.primary,.secondary{border:1px solid var(--ink);padding:12px 24px;background:var(--ink);color:var(--paper);font-size:14px}.secondary{background:transparent;color:var(--ink)}.step-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:28px}.step-count{font:11px Arial,sans-serif;letter-spacing:2px;color:var(--muted)}h2{font-size:27px;font-weight:400;margin:0 0 9px}.hint{margin:0 0 24px;color:var(--muted);font-size:14px;line-height:1.8}.choices{display:grid;gap:10px}.choice{position:relative}.choice input{position:absolute;opacity:0;pointer-events:none}.choice label{display:flex;align-items:center;gap:13px;padding:14px 16px;border:1px solid var(--line);min-height:54px;cursor:pointer;transition:.15s}.choice label:before{content:"";width:17px;height:17px;flex:0 0 17px;border:1px solid #82907e;border-radius:50%;background:transparent}.choice input[type=checkbox]+label:before{border-radius:2px}.choice input:checked+label{border-color:var(--ink);background:#e9e2d0}.choice input:checked+label:before{background:var(--ink);box-shadow:inset 0 0 0 4px var(--paper)}.choice small{display:block;color:var(--muted);font-size:12px;margin-top:4px}.choice span{font-size:15px;line-height:1.5}.inline-note{padding:13px 15px;border-left:2px solid var(--gold);color:#596958;font-size:13px;line-height:1.7;margin:18px 0 0}.text-input{width:100%;padding:13px 14px;border:1px solid var(--line);background:transparent;color:var(--ink);font:15px inherit}.text-input::placeholder{color:#8b9080}.nav{display:flex;justify-content:space-between;gap:12px;margin-top:28px}.error{min-height:20px;color:#8d3735;font-size:13px;margin-top:12px}.ticket{position:relative;width:min(100%,550px);margin:auto;padding:44px 42px 36px;background:var(--paper)}.ticket:before{top:-9px}.ticket:after{bottom:-9px}.topline{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #89927d;padding-bottom:14px;font:10px Arial,sans-serif;letter-spacing:2px;color:#657361}.stamp{border:1px solid var(--gold);border-radius:50%;width:48px;height:48px;display:grid;place-items:center;color:var(--gold);font-size:12px;letter-spacing:1px}.intro{text-align:center;padding:38px 0 24px}.intro h1{margin:13px 0 8px;font-size:35px;line-height:1.35;font-weight:400;letter-spacing:2px}.subtitle{color:#687568;font-size:14px}.to{margin:0 auto 23px;padding:14px 0;text-align:center;border-top:1px solid #c4c1ad;border-bottom:1px solid #c4c1ad;font-size:16px}.to strong{font-weight:500;color:var(--wine)}.details{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid #87917e;border-left:1px solid #87917e}.cell{min-height:80px;padding:13px 14px;border-right:1px solid #87917e;border-bottom:1px solid #87917e}.cell.wide{grid-column:1/-1}.label{display:block;color:#75806e;font:9px Arial,sans-serif;letter-spacing:2px;margin-bottom:8px}.value{font-size:15px;line-height:1.6;overflow-wrap:anywhere}.note{margin:19px 0 0;text-align:center;color:#667363;font-size:12px;line-height:1.8}.foot{margin-top:23px;display:flex;align-items:center;gap:13px;color:var(--gold)}.rule{height:1px;flex:1;background:#b9ad8c}.foot span{font-style:italic;font-size:15px}.final-actions{display:flex;justify-content:center;gap:10px;margin-top:28px}.final-actions button{padding:10px 15px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:560px){.app{padding:16px}.screen{padding:30px 23px}.cover{min-height:520px}.choice label{padding:12px}.ticket{padding:38px 23px 30px}.intro h1{font-size:31px}.cell{padding:11px 9px}.value{font-size:14px}.nav button{padding:11px 15px}}
+@media print{body{background:#fff}.app{display:block;padding:0}.screen{display:none!important}.screen#result{display:block!important;width:100%;padding:0;background:#fff}.ticket{width:100%;min-height:100vh}.final-actions{display:none}}
+</style>
+</head>
+<body>
+<main class="app">
+  <section class="screen cover active" id="cover">
+    <div class="kicker">A SMALL INVITATION</div><div class="mark">留位<br>给你</div>
+    <h1>预约一下<br>苏总的宝贵时间</h1><p>给苏子涵的一份轻松邀约</p>
+    <button class="primary" onclick="show('time')">打开邀请函</button>
+  </section>
+
+  <section class="screen" id="time">
+    <div class="step-head"><span class="kicker">DATE &amp; TIME</span><span class="step-count">01 / 03</span></div>
+    <h2>先选个合适的时间</h2><p class="hint">可以多选，之后再挑电影和影院。</p>
+    <div class="choices" id="timeChoices"></div>
+    <p class="inline-note">《小羊肖恩》和《生化危机：爆发夜》都可以考虑。你先挑个合适的时间，我再看看排片。</p>
+    <div class="error" id="timeError" aria-live="polite"></div>
+    <div class="nav"><button class="secondary" onclick="show('cover')">返回封面</button><button class="primary" onclick="nextFromTime()">继续</button></div>
+  </section>
+
+  <section class="screen" id="film">
+    <div class="step-head"><span class="kicker">CHOOSE A FILM</span><span class="step-count">02 / 03</span></div>
+    <h2>想看哪一部？</h2><p class="hint">选好后再一起确认影院和场次。</p>
+    <div class="choices" id="filmChoices"></div><div class="inline-note" id="filmNote"></div>
+    <div class="error" id="filmError" aria-live="polite"></div>
+    <div class="nav"><button class="secondary" onclick="show('time')">上一步</button><button class="primary" onclick="nextFromFilm()">继续</button></div>
+  </section>
+
+  <section class="screen" id="venue">
+    <div class="step-head"><span class="kicker">CINEMA &amp; SESSION</span><span class="step-count">03 / 03</span></div>
+    <h2>选一家影院</h2><p class="hint">时间是目前的参考范围，最终以当天实际排片为准。</p>
+    <div class="choices">
+      <div class="choice"><input type="radio" name="venue" id="v1" value="星光嘉映影城（来福士店）"><label for="v1"><span>星光嘉映影城（来福士店）<small>有情侣厅 / 全景声厅 · 可安排阿毛饭店</small></span></label></div>
+      <div class="choice"><input type="radio" name="venue" id="v2" value="金逸影城（天虹店）"><label for="v2"><span>金逸影城（天虹店）</span></label></div>
+      <div class="choice"><input type="radio" name="venue" id="v3" value="尚橙电影工场（利星广场店）"><label for="v3"><span>尚橙电影工场（利星广场店）<small>可安排胡庆余堂药膳</small></span></label></div>
+    </div>
+    <div class="inline-note" id="scheduleNote"></div>
+    <label class="sr-only" for="sessionInput">具体场次时间</label><input class="text-input" id="sessionInput" placeholder="具体场次待查，例如 13:20" style="margin-top:14px">
+    <div class="error" id="venueError" aria-live="polite"></div>
+    <div class="nav"><button class="secondary" onclick="show('film')">上一步</button><button class="primary" onclick="makeInvite()">生成邀请函</button></div>
+  </section>
+
+  <section class="screen" id="result">
+    <div class="ticket">
+      <div class="topline"><span>AN EVENING AT THE CINEMA</span><span class="stamp">留位<br>给你</span></div>
+      <header class="intro"><div class="kicker">A SMALL INVITATION</div><h1>预约一下<br>苏总的宝贵时间</h1><div class="subtitle">不赶时间，和你一起刚刚好</div></header>
+      <div class="to">致 <strong>苏子涵</strong> · 一份轻松的电影邀约</div>
+      <section class="details">
+        <div class="cell"><span class="label">DATE / 日期</span><div class="value" id="outDate"></div></div>
+        <div class="cell"><span class="label">TIME / 时间</span><div class="value" id="outTime"></div></div>
+        <div class="cell wide"><span class="label">FILM / 影片</span><div class="value" id="outFilm"></div></div>
+        <div class="cell wide"><span class="label">CINEMA / 影院</span><div class="value" id="outVenue"></div></div>
+        <div class="cell wide" id="dinnerCell"><span class="label">AFTER / 散场之后</span><div class="value" id="outDinner"></div></div>
+      </section>
+      <p class="note" id="outNote"></p><div class="foot"><i class="rule"></i><span>期待与你同场</span><i class="rule"></i></div>
+    </div>
+    <div class="final-actions"><button class="secondary" onclick="show('venue')">修改选择</button><button class="primary" onclick="window.print()">打印 / 保存 PDF</button><button class="secondary" onclick="restart()">重新开始</button></div>
+  </section>
+</main>
+<script>
+const dates=[{date:'11月5日（周四）',slots:['上午','下午','晚上']},{date:'11月6日（周五）',slots:['上午','下午','晚上']}];
+const selections={times:[],film:'',venue:'',session:''};
+const timeChoices=document.getElementById('timeChoices');
+dates.forEach((item,day)=>item.slots.forEach(slot=>{const id=`t${day}${slot}`;const row=document.createElement('div');row.className='choice';row.innerHTML=`<input type="checkbox" id="${id}" value="${item.date} ${slot}"><label for="${id}"><span>${item.date}<small>${slot}</small></span></label>`;timeChoices.appendChild(row)}));
+function show(id){document.querySelectorAll('.screen').forEach(el=>el.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+function selectedTimes(){return [...document.querySelectorAll('#timeChoices input:checked')].map(el=>el.value)}
+function nextFromTime(){selections.times=selectedTimes();const err=document.getElementById('timeError');if(!selections.times.length){err.textContent='先选一个你方便的时间吧。';return}err.textContent='';const onlyEvening=selections.times.every(t=>t.endsWith('晚上'));const films=onlyEvening?[['shaun','《小羊肖恩》'],['resident','《生化危机：爆发夜》']]:[['shaun','《小羊肖恩》','参考场次约 10:10、11:45、13:20'],['resident','《生化危机：爆发夜》','白天及晚上均有参考场次'],['both','时间充裕的话，两场都看']];const box=document.getElementById('filmChoices');box.innerHTML='';films.forEach(([value,title,sub])=>{const id='f'+value;const row=document.createElement('div');row.className='choice';row.innerHTML=`<input type="radio" name="film" id="${id}" value="${value}"><label for="${id}"><span>${title}${sub?`<small>${sub}</small>`:''}</span></label>`;box.appendChild(row)});document.getElementById('filmNote').textContent=onlyEvening?'晚上可以先看电影，也可以顺路一起吃个晚饭。': '选好影片后，我再按你选的时间查当天场次。';show('film')}
+function nextFromFilm(){const chosen=document.querySelector('input[name="film"]:checked');const err=document.getElementById('filmError');if(!chosen){err.textContent='选一部喜欢的电影吧。';return}selections.film=chosen.value;err.textContent='';const titles={shaun:'《小羊肖恩》',resident:'《生化危机：爆发夜》',both:'《小羊肖恩》+《生化危机：爆发夜》'};const times={shaun:'《小羊肖恩》参考场次约 10:10、11:45、13:20；实际开场时间待确认。',resident:'《生化危机：爆发夜》参考时段约 10:30—21:00；实际开场时间待确认。',both:'两场都看需要核对当天连续场次；实际开场时间待确认。'};document.getElementById('scheduleNote').textContent=`${titles[selections.film]}：${times[selections.film]}`;show('venue')}
+function makeInvite(){const venue=document.querySelector('input[name="venue"]:checked');const err=document.getElementById('venueError');if(!venue){err.textContent='再选一家影院吧。';return}selections.venue=venue.value;selections.session=document.getElementById('sessionInput').value.trim();err.textContent='';const dayLabels=[...new Set(selections.times.map(t=>t.slice(0,t.indexOf('（'))))];document.getElementById('outDate').textContent=dayLabels.join('、');document.getElementById('outTime').textContent=selections.times.map(t=>t.slice(t.indexOf('）')+1)).join('、');const names={shaun:'《小羊肖恩》',resident:'《生化危机：爆发夜》',both:'《小羊肖恩》+《生化危机：爆发夜》'};document.getElementById('outFilm').textContent=names[selections.film];document.getElementById('outVenue').textContent=selections.venue;const session=selections.session||'具体场次待查，以当天排片为准';document.getElementById('outTime').textContent+=` · ${session}`;const dinner=document.getElementById('dinnerCell');if(selections.venue.includes('来福士')){dinner.style.display='';document.getElementById('outDinner').textContent='看完可以去阿毛饭店吃饭。'}else if(selections.venue.includes('尚橙')){dinner.style.display='';document.getElementById('outDinner').textContent='看完可以去胡庆余堂药膳。'}else{dinner.style.display='none'}document.getElementById('outNote').textContent=selections.film==='both'?'场次确认后，我们把两场的时间都补上。':'场次信息以影院当天排片为准。期待和你一起看电影。';show('result')}
+function restart(){selections.times=[];selections.film='';selections.venue='';selections.session='';document.querySelectorAll('input').forEach(el=>{if(el.type==='checkbox'||el.type==='radio')el.checked=false});document.getElementById('sessionInput').value='';show('cover')}
+</script>
+</body>
+</html>
